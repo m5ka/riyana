@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% if page.title %}{{ page.title }} — {% endif %}{% if page.language == "ry" %}Riŗâð{% else %}Riyana{% endif %}</title>
+        <link rel="stylesheet" href="{{ "/assets/css/reset.css" | relative_url }}">
+        <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+        <link rel="shortcut icon" href="{% link assets/images/RiyanEmblem.png %}" type="image/png">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <img src="{% link /assets/images/RiyanEmblem.png %}" draggable="false"/>
+                <h1>{% if page.language == "ry" %}Ríŗâð{% else %}Riyana{% endif %}</h1>
+            </div>
+            <div class="language-picker">
+                {% if page.language == "ry" %}
+                    {% if page.other_language %}<a href="{% if page.other_language %}{{ page.other_language | relative_url }}{% else %}{% link _pages/en/index.html %}{% endif %}">English</a>
+                    /
+                    {% endif %}
+                    <span class="picked">Ríŗilt</span>
+                {% else %}
+                    <span class="picked">English</span>
+                    {% if page.other_language %}
+                        /
+                        <a href="{% if page.other_language %}{{ page.other_language | relative_url }}{% else %}{% link _pages/ry/index.html %}{% endif %}">Ríŗilt</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </header>
+        <nav>
+            <div class="container">
+                <ul>
+                    {% if page.language == "ry" %}
+                    <li><a href="{% link _pages/ry/index.html %}">Vumme</a></li>
+                    <li><a href="{% link _pages/en/language.md %}">Vrynd</a></li>
+                    <li><a class="disabled" href="#">Muŗâð</a></li>
+                    <li><a class="disabled" href="#">Ţaolta</a></li>
+                    <li><a class="disabled" href="#">Paola gí Nalirga</a></li>
+                    {% else %}
+                    <li><a href="{% link _pages/en/index.html %}">Home</a></li>
+                    <li><a href="{% link _pages/en/language.md %}">Language</a></li>
+                    <li><a class="disabled" href="#">Culture</a></li>
+                    <li><a class="disabled" href="#">Government</a></li>
+                    <li><a class="disabled" href="#">Become a Citizen</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <main class="container">
+            {{ content }}
+        </main>
+    </body>
+</html>

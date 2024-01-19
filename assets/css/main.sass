@@ -1,0 +1,184 @@
+---
+---
+$md: 768px
+$lg: 992px
+$xl: 1200px
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap')
+
+*, *:before, *:after
+    box-sizing: border-box
+
+\:root
+    --max-width: auto
+    --columns: 1fr 1fr
+    --article-image-height: 128px
+    --article-promo-image-height: 248px
+    --language-picker-right: 1.6rem
+
+@media(min-width: $md)
+    \:root
+        --max-width: #{$md}
+        --columns: 1fr 1fr 1fr
+        --language-picker-right: calc(((100vw - var(--max-width)) / 2) + 1.6rem)
+
+@media(min-width: $lg)
+    \:root
+        --max-width: #{$lg}
+        --article-image-height: 148px
+        --article-promo-image-height: 288px
+
+@media(min-width: $xl)
+    \:root
+        --max-width: #{$xl}
+        --columns: 1fr 1fr 1fr 1fr
+        --article-image-height: 184px
+        --article-promo-image-height: 308px
+
+body
+    background: #f7f7f7
+    font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    margin: 0
+    padding: 0 0 1.6rem 0
+
+    > header
+        background: #214478
+        color: #fff
+        padding: .8rem 0
+        user-select: none;
+
+        img
+            width: 86px
+            margin-bottom: .4rem
+
+        h1
+            width: 86px;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 0;
+
+    > nav
+        background: #214478
+
+        ul
+            display: flex
+            flex-flow: row wrap
+            margin: 0 -1.2rem
+
+        li a
+            display: block
+            padding: .8rem 1.2rem
+            color: #fff
+            text-decoration: none
+            border-bottom: 4px solid #214478
+
+            &.disabled
+                color: #8fa0b1
+                pointer-events: none
+
+            &:hover
+                border-color: #3b639e
+
+    > main
+        margin-top: 1.6rem
+
+.articles
+    display: grid
+    grid-template-columns: var(--columns)
+    row-gap: 1.2rem
+    column-gap: 1.2rem
+
+    a
+        background: #ffffff
+        text-decoration: none
+        color: #000000
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1)
+        border-radius: 4px
+
+        &.promo
+            grid-column: span 2
+            grid-row: span 2
+
+            .image
+                height: var(--article-promo-image-height)
+            
+            main
+                padding: 1.2rem 1.2rem 1.6rem 1.2rem
+                font-size: 1.2rem
+
+                h3
+                    font-size: 1.8rem;
+
+                    + p
+                        margin-top: 1rem;
+        
+        &:hover
+            main h3
+                text-decoration: underline;
+
+        .image
+            background-color: #e5e5e5
+            height: var(--article-image-height)
+            width: 100%
+            background-size: cover
+            background-position: 50% 50%
+            border-radius: 4px 4px 0 0
+        
+        main
+            display: block
+            padding: .8rem .8rem 1.2rem .8rem
+
+            h3
+                font-weight: bold
+                font-size: 1.2rem
+            
+                + p
+                    margin-top: .6rem
+
+.article
+    .article__header
+        display: grid
+        row-gap: .8rem
+        margin-block-end: 1.8rem
+
+        .article__headline
+            font-size: 2.4rem
+    
+    .article__body
+        p, ul
+            margin-block: .8rem 1.2rem
+
+        ul
+            list-style: disc
+            padding-inline-start: 2.4rem
+        
+        a
+            color: #2e5186
+
+            &:hover
+                background: #2e5186
+                color: #fff
+
+.container
+    max-width: var(--max-width)
+    padding-inline: 1.6rem
+    margin-inline: auto
+    width: 100%
+
+.language-picker
+    position: absolute
+    top: 0
+    right: var(--language-picker-right)
+    display: block
+    background: #2e5186
+    padding: .6rem .8rem .4rem .8rem
+    border-radius: 0 0 6px 6px
+    color: #fff
+    font-size: 90%
+
+    a
+        color: #fff
+
+    .picked
+        font-weight: bold
